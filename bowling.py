@@ -30,6 +30,15 @@ def score(game):
 
 
 def get_value(char):
+    '''
+    Get the value of character as points
+
+    Arguments:
+        char: individual character from each frame of bowling, as string
+
+    Returns:
+        character's value as integer
+    '''
     if char.upper() == 'X' or char == '/':
         return 10
     elif char == '-':
