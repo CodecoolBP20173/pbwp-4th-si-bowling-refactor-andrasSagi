@@ -51,10 +51,12 @@ def get_value(char):
 
 
 def is_strike(turn):
+    ''' Decide if turn is a strike '''
     if turn.upper() == 'X':
         return True
 
 
 def is_spare(turn):
+    ''' Decide if turn is a spare '''
     if turn == '/':
         return True
