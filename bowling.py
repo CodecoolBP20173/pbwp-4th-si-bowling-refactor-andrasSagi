@@ -18,12 +18,11 @@ def score(game):
                 else:
                     result += get_value(second_next_turn)
         last_turn = get_value(this_turn)
-        if not in_first_half:
-            frame += 1
         if in_first_half:
             in_first_half = False
         else:
             in_first_half = True
+            frame += 1
         if is_strike(this_turn):
             in_first_half = True
             frame += 1
