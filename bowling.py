@@ -6,17 +6,19 @@ def score(game):
         this_turn = game[turn]
         if is_spare(this_turn):
             result += 10 - last_turn
+            if frame < 10:
+                next_turn = game[turn+1]
+                result += get_value(next_turn)
         else:
             result += get_value(this_turn)
-        if frame < 10 and get_value(this_turn) == 10:
+        if frame < 10 and is_strike(this_turn):
             next_turn = game[turn+1]
             result += get_value(next_turn)
-            if is_strike(this_turn):
-                second_next_turn = game[turn+2]
-                if is_spare(second_next_turn):
-                    result += 10 - get_value(next_turn)
-                else:
-                    result += get_value(second_next_turn)
+            second_next_turn = game[turn+2]
+            if is_spare(second_next_turn):
+                result += 10 - get_value(next_turn)
+            else:
+                result += get_value(second_next_turn)
         if in_first_half:
             in_first_half = False
         else:
