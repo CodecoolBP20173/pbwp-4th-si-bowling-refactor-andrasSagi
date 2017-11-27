@@ -1,15 +1,19 @@
 def score(game):
+    '''
+    Calculate the score of a player in a game of bowling
+
+    Arguments:
+        game: bowling roll points input as a string
+
+    Returns:
+        resulting points as integer
+    '''
     result = 0
     frame = 1
     in_first_half = True
     for turn in range(len(game)):
         this_turn = game[turn]
-        if is_spare(this_turn):
-            result += 10 - get_value(game[turn-1])
-            if frame < 10:
-                result += get_value(game[turn+1])
-        else:
-            result += get_value(this_turn)
+        result += points_if_spare(turn, game, frame)
         if is_strike(this_turn):
             if frame < 10:
                 result += get_value(game[turn+1])
@@ -58,3 +62,26 @@ def is_spare(turn):
     ''' Decide if turn is a spare '''
     if turn == '/':
         return True
+
+
+def points_if_spare(roll, game, frame):
+    '''
+    Calculate points of a roll based on if it is a spare
+
+    Arguments:
+        roll: current roll, as integer
+        game: the results of the bowling game as a string
+        frame: current frame as integer
+
+    Returns:
+        points as integer
+    '''
+    this_turn = game[roll]
+    points = 0
+    if is_spare(this_turn):
+        points += 10 - get_value(game[roll-1])
+        if frame < 10:
+            points += get_value(game[roll+1])
+    else:
+        points += get_value(this_turn)
+    return points
