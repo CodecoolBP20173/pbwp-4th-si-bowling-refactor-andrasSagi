@@ -12,9 +12,8 @@ def score(game):
     frame = 1
     in_first_half = True
     for turn in range(len(game)):
-        this_turn = game[turn]
         result += points_if_spare(turn, game, frame)
-        if is_strike(this_turn):
+        if is_strike(game[turn]):
             if frame < 10:
                 result += get_value(game[turn+1])
                 if is_spare(game[turn+2]):
